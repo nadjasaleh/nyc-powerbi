@@ -1,0 +1,44 @@
+table dim_hour
+	lineageTag: f87d1b56-0b69-48d4-8050-1d66fa54e9ac
+
+	column hour_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 94232261-6529-48c9-9936-bb80fbeab411
+		summarizeBy: none
+		sourceColumn: hour_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column period_of_day
+		dataType: string
+		lineageTag: a84d4fe1-06f7-4a7e-bf0d-a10b4d8fcb8a
+		summarizeBy: none
+		sourceColumn: period_of_day
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_rush_traffic
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: eaad6ed5-25bf-41ae-9a8a-e47fdbdac2c4
+		summarizeBy: none
+		sourceColumn: is_rush_traffic
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_hour = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("adb-7405606287355996.16.azuredatabricks.net", "/sql/1.0/warehouses/ece3e88605ce132f", null),
+				    group3_gp_Database = Source{[Name="group3_gp",Kind="Database"]}[Data],
+				    testing_Schema = group3_gp_Database{[Name="testing",Kind="Schema"]}[Data],
+				    dim_hour_Table = testing_Schema{[Name="dim_hour",Kind="Table"]}[Data]
+				in
+				    dim_hour_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

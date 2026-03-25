@@ -10,5 +10,15 @@ annotation __PBI_TimeIntelligenceEnabled = 1
 
 annotation PBI_ProTooling = ["DevMode"]
 
+annotation PBI_QueryOrder = ["dim_company","dim_date","dim_hour","dim_zone","fact_taxi_trips"]
+
+ref table dim_company
+ref table dim_date
+ref table DateTableTemplate_93a1b0c4-c9e1-4915-b8ef-bbb4ce3c0991
+ref table LocalDateTable_abd3e9ce-5cf9-43dd-af1f-cc894ab80390
+ref table dim_hour
+ref table dim_zone
+ref table fact_taxi_trips
+
 ref cultureInfo en-US
 

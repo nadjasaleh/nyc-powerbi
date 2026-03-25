@@ -1,0 +1,26 @@
+relationship 7c3e8f21-4daf-4608-b35d-8d9494aab5d2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_date.date
+	toColumn: LocalDateTable_abd3e9ce-5cf9-43dd-af1f-cc894ab80390.Date
+
+relationship AutoDetected_bc01b0b1-08c8-43ad-a45e-5838c7d39753
+	fromColumn: fact_taxi_trips.company_id
+	toColumn: dim_company.company_id
+
+relationship AutoDetected_5ed39518-916c-416e-8a70-49bb946bf450
+	fromColumn: fact_taxi_trips.hour_id
+	toColumn: dim_hour.hour_id
+
+relationship 80b8c732-759f-53ea-cd24-b4dd0bd8aa82
+	fromColumn: fact_taxi_trips.pickup_date_key
+	toColumn: dim_date.date_id
+
+relationship 2c93f670-ecb8-1c5b-ab9b-f126029decbe
+	fromColumn: fact_taxi_trips.dropoff_loc_id
+	toColumn: dim_zone.zone_id
+
+relationship e60b9dcf-791e-66a0-49cf-1a4a4f9fab6a
+	isActive: false
+	fromColumn: fact_taxi_trips.pickup_loc_id
+	toColumn: dim_zone.zone_id
+

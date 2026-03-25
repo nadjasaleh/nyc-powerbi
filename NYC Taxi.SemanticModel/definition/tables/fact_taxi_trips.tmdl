@@ -1,0 +1,147 @@
+table fact_taxi_trips
+	lineageTag: d16e090a-5c5d-4ffa-9e06-e2d9f396087d
+
+	measure 'Total Revenue' = SUM(fact_taxi_trips[total_fare])
+		lineageTag: 05fdb722-06f2-41a9-93b0-d39e6a89be1e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Duration (Mins)' = ```
+			
+			DIVIDE(
+			    SUM(fact_taxi_trips[total_time_seconds]), 
+			    SUM(fact_taxi_trips[trip_count])
+			) / 60
+			```
+		lineageTag: 68727772-f77d-44eb-890e-d9f26e87e949
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pickup_date_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 7501ee5f-ebd0-49e2-971a-130ebf195d69
+		summarizeBy: none
+		sourceColumn: pickup_date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column hour_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 2b9030ae-042f-4fc3-a403-e2af7d3884c9
+		summarizeBy: none
+		sourceColumn: hour_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column company_id
+		dataType: int64
+		formatString: 0
+		lineageTag: bcf8710b-3a3c-4492-8969-b7109411892f
+		summarizeBy: none
+		sourceColumn: company_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column pickup_loc_id
+		dataType: int64
+		formatString: 0
+		lineageTag: d91168e9-6c38-4290-b5af-a41a3e803994
+		summarizeBy: sum
+		sourceColumn: pickup_loc_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column dropoff_loc_id
+		dataType: int64
+		formatString: 0
+		lineageTag: a347789e-4cd8-4910-aa1d-8e477978655f
+		summarizeBy: none
+		sourceColumn: dropoff_loc_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column trip_count
+		dataType: int64
+		formatString: 0
+		lineageTag: bde87a06-7739-4636-8cb3-891f0c855d0b
+		summarizeBy: sum
+		sourceColumn: trip_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_distance
+		dataType: double
+		lineageTag: aefd2454-89ca-444f-b01c-44d72341fe3e
+		summarizeBy: sum
+		sourceColumn: total_distance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_time_seconds
+		dataType: double
+		lineageTag: d13f569c-9003-4502-b914-d94b4b7c55d7
+		summarizeBy: sum
+		sourceColumn: total_time_seconds
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_fare
+		dataType: double
+		lineageTag: 63400f23-146a-40da-a310-30b89c458b7d
+		summarizeBy: sum
+		sourceColumn: total_fare
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_tips
+		dataType: double
+		lineageTag: 93e143a9-b112-4cd4-8e6a-02a99b2cb7a5
+		summarizeBy: sum
+		sourceColumn: total_tips
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column count_calc_dist
+		dataType: int64
+		formatString: 0
+		lineageTag: bb6f34a9-cd52-45fc-8d0e-e6f7bd8fb7fc
+		summarizeBy: sum
+		sourceColumn: count_calc_dist
+
+		annotation SummarizationSetBy = Automatic
+
+	column count_calc_fare
+		dataType: int64
+		formatString: 0
+		lineageTag: b5048f5b-16b6-4743-87cc-4dc3a2c45937
+		summarizeBy: sum
+		sourceColumn: count_calc_fare
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_taxi_trips = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("adb-7405606287355996.16.azuredatabricks.net", "/sql/1.0/warehouses/ece3e88605ce132f", null),
+				    group3_gp_Database = Source{[Name="group3_gp",Kind="Database"]}[Data],
+				    testing_Schema = group3_gp_Database{[Name="testing",Kind="Schema"]}[Data],
+				    fact_taxi_trips_Table = testing_Schema{[Name="fact_taxi_trips",Kind="Table"]}[Data],
+				    #"Sorted Rows" = Table.Sort(fact_taxi_trips_Table,{{"pickup_date_key", Order.Descending}})
+				in
+				    #"Sorted Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

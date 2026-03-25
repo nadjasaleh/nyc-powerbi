@@ -1,0 +1,54 @@
+table dim_company
+	lineageTag: 73f9f710-cbbd-49d8-9240-823f4264f2ba
+
+	measure 'Market Share' = ```
+			
+			DIVIDE(
+			    SUM(fact_taxi_trips[trip_count]), 
+			    CALCULATE(SUM(fact_taxi_trips[trip_count]), ALL(dim_company))
+			)
+			```
+		lineageTag: 1049b2ae-7e7a-4645-8e7f-736b9488318b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column company_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 49972b9e-a975-4be7-9cb5-f90b2be14da3
+		summarizeBy: none
+		sourceColumn: company_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column service_type
+		dataType: string
+		lineageTag: 3c70a5cb-220d-410d-a8e9-ae080faf9236
+		summarizeBy: none
+		sourceColumn: service_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column taxi_type
+		dataType: string
+		lineageTag: 7c4a369c-bdd2-4368-91c3-c508c29ae679
+		summarizeBy: none
+		sourceColumn: taxi_type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_company = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("adb-7405606287355996.16.azuredatabricks.net", "/sql/1.0/warehouses/ece3e88605ce132f", null),
+				    group3_gp_Database = Source{[Name="group3_gp",Kind="Database"]}[Data],
+				    testing_Schema = group3_gp_Database{[Name="testing",Kind="Schema"]}[Data],
+				    dim_company_Table = testing_Schema{[Name="dim_company",Kind="Table"]}[Data]
+				in
+				    dim_company_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
