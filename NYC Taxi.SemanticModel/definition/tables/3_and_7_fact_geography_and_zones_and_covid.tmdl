@@ -34,7 +34,7 @@ table 3_and_7_fact_geography_and_zones_and_covid
 		dataType: int64
 		formatString: 0
 		lineageTag: b4f2490c-4285-4550-9090-5bee9236f013
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: do_zone_id
 
 		annotation SummarizationSetBy = Automatic

@@ -1,10 +1,10 @@
-table dim_zone
-	lineageTag: 3c87345f-8dea-471d-acd5-009178c3309a
+table dim_zone_dropoff
+	lineageTag: 255d1443-04d9-40e0-9d3b-fca6221701ef
 
 	column zone_id
 		dataType: int64
 		formatString: 0
-		lineageTag: 892fc0ee-30a9-40c9-be9b-22ca31d960cd
+		lineageTag: cee714f8-3373-41ae-9feb-1d59ed4c6c38
 		summarizeBy: none
 		sourceColumn: zone_id
 
@@ -12,7 +12,7 @@ table dim_zone
 
 	column zone_name
 		dataType: string
-		lineageTag: 55b67573-18f1-4835-a8b8-3430c913bc4c
+		lineageTag: 6e5c36c9-81c6-4f22-b750-566808af1ddb
 		summarizeBy: none
 		sourceColumn: zone_name
 
@@ -20,7 +20,7 @@ table dim_zone
 
 	column borough
 		dataType: string
-		lineageTag: 79181d03-a9f8-40dd-88af-8a2536540d7e
+		lineageTag: fa1d7db8-9d1e-4925-8b2e-30f3336fb704
 		summarizeBy: none
 		sourceColumn: borough
 
@@ -28,7 +28,7 @@ table dim_zone
 
 	column service_zone
 		dataType: string
-		lineageTag: 6d4ec04f-2193-4950-87e9-265de9e9610e
+		lineageTag: cefe9780-c797-4881-97ae-85f10b2f9938
 		summarizeBy: none
 		sourceColumn: service_zone
 
@@ -36,24 +36,20 @@ table dim_zone
 
 	column geometry_wkt
 		dataType: string
-		lineageTag: 9ad2b833-5957-4b99-b3be-15d2e22d2be4
+		lineageTag: 9b01a4da-feca-4d8e-9329-5c18a759e3cd
 		summarizeBy: none
 		sourceColumn: geometry_wkt
 
 		annotation SummarizationSetBy = Automatic
 
-	partition dim_zone = m
+	partition dim_zone_dropoff = m
 		mode: import
 		source =
 				let
 				    Source = Databricks.Catalogs("adb-7405606287355996.16.azuredatabricks.net", "/sql/1.0/warehouses/ece3e88605ce132f", null),
 				    group3_gp_Database = Source{[Name="group3_gp",Kind="Database"]}[Data],
-				    testing_Schema = group3_gp_Database{[Name="testing",Kind="Schema"]}[Data],
-				    dim_zone_Table = testing_Schema{[Name="dim_zone",Kind="Table"]}[Data]
+				    gold_Schema = group3_gp_Database{[Name="gold",Kind="Schema"]}[Data],
+				    dim_zone_dropoff_Table = gold_Schema{[Name="dim_zone_dropoff",Kind="Table"]}[Data]
 				in
-				    dim_zone_Table
-
-	annotation PBI_NavigationStepName = Navigation
-
-	annotation PBI_ResultType = Table
+				    dim_zone_dropoff_Table
 

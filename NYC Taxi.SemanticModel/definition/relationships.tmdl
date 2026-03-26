@@ -34,3 +34,19 @@ relationship c11f212a-4f44-b476-3a93-7ce0e11ce706
 	fromColumn: 2_fact_trip_demand_volume.hour_id
 	toColumn: dim_hour.hour_id
 
+relationship 3a8f88df-8ab6-7487-08f4-30ead9964cca
+	fromColumn: 3_and_7_fact_geography_and_zones_and_covid.do_zone_id
+	toColumn: dim_zone_dropoff.zone_id
+
+relationship d0a6ae72-d7bf-8301-977a-f47f6b2648a2
+	fromColumn: 3_and_7_fact_geography_and_zones_and_covid.pu_zone_id
+	toColumn: dim_zone.zone_id
+
+relationship 838d3dae-9aeb-ccc6-d71a-807deb77aff0
+	fromColumn: 5_fact_trip_efficiency_and_operations.pu_zone_id
+	toColumn: dim_zone.zone_id
+
+relationship 6cb66c98-cc97-58e5-0c8e-79677ee5d0a9
+	fromColumn: 5_fact_trip_efficiency_and_operations.do_zone_id
+	toColumn: dim_zone_dropoff.zone_id
+
