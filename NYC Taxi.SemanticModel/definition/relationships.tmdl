@@ -1,0 +1,42 @@
+relationship 7c3e8f21-4daf-4608-b35d-8d9494aab5d2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_date.date
+	toColumn: LocalDateTable_abd3e9ce-5cf9-43dd-af1f-cc894ab80390.Date
+
+relationship AutoDetected_ed89badf-7b7d-4040-aece-457bb2568663
+	fromColumn: 5_fact_trip_efficiency_and_operations.company_id
+	toColumn: dim_company.company_id
+
+relationship AutoDetected_3a521dd8-548d-49c0-a216-b937822c47a9
+	fromColumn: 4_fact_company_and_market_share.company_id
+	toColumn: dim_company.company_id
+
+relationship AutoDetected_8b941a0a-9be4-4ed8-82a0-4ee52901db16
+	fromColumn: 2_fact_trip_demand_volume.company_id
+	toColumn: dim_company.company_id
+
+relationship AutoDetected_b398b792-5264-405d-97b2-88269e3f09e2
+	fromColumn: 1_fact_revenue_and_fares.company_id
+	toColumn: dim_company.company_id
+
+relationship AutoDetected_c8c60471-139c-46b5-a0bc-b20e79036a9b
+	fromColumn: 2_fact_trip_demand_volume.hour_id
+	toColumn: dim_hour.hour_id
+
+relationship 7694ceb8-def1-2e67-a1a3-ac8a02d75bd4
+	fromColumn: 1_fact_revenue_and_fares.date_id
+	toColumn: dim_date.date_id
+
+relationship 3a6947a1-0582-6968-e255-126e9fed4a34
+	fromColumn: 5_fact_trip_efficiency_and_operations.do_zone_id
+	toColumn: dim_zone.zone_id
+
+relationship 48d5c92a-b10a-2bda-8df6-e36f5e9eb7d7
+	isActive: false
+	fromColumn: 5_fact_trip_efficiency_and_operations.pu_zone_id
+	toColumn: dim_zone.zone_id
+
+relationship 9dce7120-16be-ccab-8d4d-43bbc5ed34a6
+	fromColumn: 4_fact_company_and_market_share.date_id
+	toColumn: dim_date.date_id
+

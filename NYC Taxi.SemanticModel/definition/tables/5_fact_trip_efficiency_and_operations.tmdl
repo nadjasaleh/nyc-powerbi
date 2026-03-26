@@ -1,0 +1,119 @@
+table 5_fact_trip_efficiency_and_operations
+	lineageTag: a7294d5e-1505-4f61-920f-c914d41180f1
+
+	column company_id
+		dataType: int64
+		formatString: 0
+		lineageTag: a3579755-8aa3-4ee4-b5c8-467ab882173b
+		summarizeBy: none
+		sourceColumn: company_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column pu_zone_id
+		dataType: int64
+		formatString: 0
+		lineageTag: cbfefefe-22e6-435e-aad1-49e63ba12c5b
+		summarizeBy: sum
+		sourceColumn: pu_zone_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column do_zone_id
+		dataType: int64
+		formatString: 0
+		lineageTag: a934bb06-4eb3-46bd-ae9a-ccd49bd1094d
+		summarizeBy: none
+		sourceColumn: do_zone_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_trips
+		dataType: int64
+		formatString: 0
+		lineageTag: 7cf347f7-bcb4-42c4-89c3-c2b44aa89bf5
+		summarizeBy: sum
+		sourceColumn: total_trips
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_trip_distance
+		dataType: decimal
+		formatString: #,0.###############\ "kr";-#,0.###############\ "kr";#,0.###############\ "kr"
+		lineageTag: 561bfd7c-7b6f-451c-ae78-83c30c94fb64
+		summarizeBy: sum
+		sourceColumn: total_trip_distance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"sv-SE"}
+
+	column avg_trip_distance
+		dataType: decimal
+		formatString: #,0.###############\ "kr";-#,0.###############\ "kr";#,0.###############\ "kr"
+		lineageTag: 072dd8c4-9d00-4220-854f-a64302c830a7
+		summarizeBy: sum
+		sourceColumn: avg_trip_distance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"sv-SE"}
+
+	column total_trip_time
+		dataType: double
+		lineageTag: 1628a95c-13ff-47da-ac54-2bbd138fbe1c
+		summarizeBy: sum
+		sourceColumn: total_trip_time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_trip_time
+		dataType: decimal
+		formatString: #,0.###############\ "kr";-#,0.###############\ "kr";#,0.###############\ "kr"
+		lineageTag: 0c06b9d3-0b37-4133-b9e7-33dda39010a2
+		summarizeBy: sum
+		sourceColumn: avg_trip_time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"sv-SE"}
+
+	column total_amount
+		dataType: double
+		lineageTag: 63d43b63-d542-4dac-b7ab-fbee03eba77d
+		summarizeBy: sum
+		sourceColumn: total_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_amount
+		dataType: decimal
+		formatString: #,0.###############\ "kr";-#,0.###############\ "kr";#,0.###############\ "kr"
+		lineageTag: 660c0d91-768a-4f4b-8820-2bde654311ae
+		summarizeBy: sum
+		sourceColumn: avg_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"sv-SE"}
+
+	partition 5_fact_trip_efficiency_and_operations = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("adb-7405606287355996.16.azuredatabricks.net", "/sql/1.0/warehouses/ece3e88605ce132f", null),
+				    group3_gp_Database = Source{[Name="group3_gp",Kind="Database"]}[Data],
+				    gold_Schema = group3_gp_Database{[Name="gold",Kind="Schema"]}[Data],
+				    #"5_fact_trip_efficiency_and_operations_Table" = gold_Schema{[Name="5_fact_trip_efficiency_and_operations",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(#"5_fact_trip_efficiency_and_operations_Table",{{"total_trip_distance", Currency.Type}, {"avg_trip_distance", Currency.Type}, {"avg_trip_time", Currency.Type}, {"avg_amount", Currency.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

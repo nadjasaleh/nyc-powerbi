@@ -1,0 +1,126 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 8.7906057945566545
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 820.38305001469359,
+            "y": 888.23295306023147
+          },
+          "nodeIndex": "dim_company",
+          "nodeLineageTag": "73f9f710-cbbd-49d8-9240-823f4264f2ba",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 810.38305001469348,
+            "y": 555.07765102007716
+          },
+          "nodeIndex": "dim_date",
+          "nodeLineageTag": "1c3ed550-334d-43ef-b28a-a1ebc4e9f45a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 810,
+            "y": 350.21806383983142
+          },
+          "nodeIndex": "dim_hour",
+          "nodeLineageTag": "f87d1b56-0b69-48d4-8050-1d66fa54e9ac",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 816.38305001469348,
+            "y": 94
+          },
+          "nodeIndex": "dim_zone",
+          "nodeLineageTag": "3c87345f-8dea-471d-acd5-009178c3309a",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 1472.3830500146935,
+            "y": 0
+          },
+          "nodeIndex": "1_fact_revenue_and_fares",
+          "nodeLineageTag": "bf0a59a0-86dd-41bd-b15d-600629fce903",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1787.3671769988205,
+            "y": 9.5793650793650613
+          },
+          "nodeIndex": "2_fact_trip_demand_volume",
+          "nodeLineageTag": "e3246c38-146d-4627-8449-b8895f2f0fc8",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1459.9703516019952,
+            "y": 420.94444444444446
+          },
+          "nodeIndex": "4_fact_company_and_market_share",
+          "nodeLineageTag": "85f24988-0ab5-462a-849f-caaac767cd42",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 1736.1608277924711,
+            "y": 412.34920634920638
+          },
+          "nodeIndex": "5_fact_trip_efficiency_and_operations",
+          "nodeLineageTag": "a7294d5e-1505-4f61-920f-c914d41180f1",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 7
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 68,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

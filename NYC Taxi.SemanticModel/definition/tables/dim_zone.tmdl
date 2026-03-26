@@ -1,0 +1,59 @@
+table dim_zone
+	lineageTag: 3c87345f-8dea-471d-acd5-009178c3309a
+
+	column zone_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 892fc0ee-30a9-40c9-be9b-22ca31d960cd
+		summarizeBy: none
+		sourceColumn: zone_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column zone_name
+		dataType: string
+		lineageTag: 55b67573-18f1-4835-a8b8-3430c913bc4c
+		summarizeBy: none
+		sourceColumn: zone_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column borough
+		dataType: string
+		lineageTag: 79181d03-a9f8-40dd-88af-8a2536540d7e
+		summarizeBy: none
+		sourceColumn: borough
+
+		annotation SummarizationSetBy = Automatic
+
+	column service_zone
+		dataType: string
+		lineageTag: 6d4ec04f-2193-4950-87e9-265de9e9610e
+		summarizeBy: none
+		sourceColumn: service_zone
+
+		annotation SummarizationSetBy = Automatic
+
+	column geometry_wkt
+		dataType: string
+		lineageTag: 9ad2b833-5957-4b99-b3be-15d2e22d2be4
+		summarizeBy: none
+		sourceColumn: geometry_wkt
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_zone = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("adb-7405606287355996.16.azuredatabricks.net", "/sql/1.0/warehouses/ece3e88605ce132f", null),
+				    group3_gp_Database = Source{[Name="group3_gp",Kind="Database"]}[Data],
+				    testing_Schema = group3_gp_Database{[Name="testing",Kind="Schema"]}[Data],
+				    dim_zone_Table = testing_Schema{[Name="dim_zone",Kind="Table"]}[Data]
+				in
+				    dim_zone_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
