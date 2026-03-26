@@ -1,0 +1,33 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "b579b0bfe124fd135b72",
+  "position": {
+    "x": 609,
+    "y": 0,
+    "z": 4000,
+    "height": 193,
+    "width": 543,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "The Waterfall chart acts as a \"Bridge\" between years. It visually subtracts or adds the performance of each taxi type, making it clear that Uber's expansion was the primary driver for the multi-billion dollar increase in the NYC transport market over the last 24 months."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

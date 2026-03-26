@@ -1,22 +1,11 @@
 table dim_zone
 	lineageTag: 3c87345f-8dea-471d-acd5-009178c3309a
 
-	measure 'Dropoff Revenue' = ```
-			
-			CALCULATE(
-			    [Total Revenue], 
-			    USERELATIONSHIP(fact_taxi_trips[dropoff_loc_id], dim_zone[zone_id])
-			)
-			```
-		lineageTag: e83d9ed9-c539-4c71-bef6-40763d8c6a61
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column zone_id
 		dataType: int64
 		formatString: 0
 		lineageTag: 892fc0ee-30a9-40c9-be9b-22ca31d960cd
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: zone_id
 
 		annotation SummarizationSetBy = Automatic

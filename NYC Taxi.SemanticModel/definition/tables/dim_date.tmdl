@@ -1,5 +1,6 @@
 table dim_date
 	lineageTag: 1c3ed550-334d-43ef-b28a-a1ebc4e9f45a
+	dataCategory: Time
 
 	column date_id
 		dataType: int64
@@ -12,15 +13,11 @@ table dim_date
 
 	column date
 		dataType: dateTime
+		isKey
 		formatString: Long Date
 		lineageTag: b674e948-c31d-47d2-a845-0f4b2912d816
 		summarizeBy: none
 		sourceColumn: date
-
-		variation Variation
-			isDefault
-			relationship: 7c3e8f21-4daf-4608-b35d-8d9494aab5d2
-			defaultHierarchy: LocalDateTable_abd3e9ce-5cf9-43dd-af1f-cc894ab80390.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -30,25 +27,28 @@ table dim_date
 		dataType: int64
 		formatString: 0
 		lineageTag: f29a5e6e-e501-4949-9913-2ba98c5c0b6d
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: year
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column month
 		dataType: int64
 		formatString: 0
 		lineageTag: c656590d-268b-4764-b2fe-6f4df2581d5e
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: month
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column month_name
 		dataType: string
 		lineageTag: 135983f3-0cca-4f4a-870b-bcb9ce77bddd
 		summarizeBy: none
 		sourceColumn: month_name
+		sortByColumn: month
+
+		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
 
@@ -111,6 +111,13 @@ table dim_date
 		lineageTag: 4b68e73d-edd4-43f9-8419-5aa896e8d9a8
 		summarizeBy: none
 		sourceColumn: is_covid
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlayNumber = (dim_date[year] * 100) + dim_date[month]
+		formatString: 0
+		lineageTag: 10aae04f-c35c-4e46-996e-a7057cfb7828
+		summarizeBy: sum
 
 		annotation SummarizationSetBy = Automatic
 

@@ -1,26 +1,36 @@
-relationship 7c3e8f21-4daf-4608-b35d-8d9494aab5d2
-	joinOnDateBehavior: datePartOnly
-	fromColumn: dim_date.date
-	toColumn: LocalDateTable_abd3e9ce-5cf9-43dd-af1f-cc894ab80390.Date
-
-relationship AutoDetected_bc01b0b1-08c8-43ad-a45e-5838c7d39753
-	fromColumn: fact_taxi_trips.company_id
-	toColumn: dim_company.company_id
-
-relationship AutoDetected_5ed39518-916c-416e-8a70-49bb946bf450
-	fromColumn: fact_taxi_trips.hour_id
-	toColumn: dim_hour.hour_id
-
-relationship 80b8c732-759f-53ea-cd24-b4dd0bd8aa82
-	fromColumn: fact_taxi_trips.pickup_date_key
+relationship 2d481e5f-72b9-3f30-8d0f-d8ba157bbd06
+	fromColumn: 1_fact_revenue_and_fares.date_id
 	toColumn: dim_date.date_id
 
-relationship 2c93f670-ecb8-1c5b-ab9b-f126029decbe
-	fromColumn: fact_taxi_trips.dropoff_loc_id
-	toColumn: dim_zone.zone_id
+relationship f34fc0fa-8e3a-7f4e-354d-0d0a7f8ae63a
+	fromColumn: 2_fact_trip_demand_volume.date_id
+	toColumn: dim_date.date_id
 
-relationship e60b9dcf-791e-66a0-49cf-1a4a4f9fab6a
-	isActive: false
-	fromColumn: fact_taxi_trips.pickup_loc_id
-	toColumn: dim_zone.zone_id
+relationship fb2b0b33-c3b7-dd22-5917-59a9b0df42cb
+	fromColumn: 4_fact_company_and_market_share.date_id
+	toColumn: dim_date.date_id
+
+relationship d76c3223-4183-1b26-7ca6-1cdac32c5cca
+	fromColumn: 5_fact_trip_efficiency_and_operations.company_id
+	toColumn: dim_company.company_id
+
+relationship b525f032-8aaa-235c-14d2-bf0f9367f9fd
+	fromColumn: 4_fact_company_and_market_share.company_id
+	toColumn: dim_company.company_id
+
+relationship 4008099f-04a5-e987-7a54-5730cf019b15
+	fromColumn: 2_fact_trip_demand_volume.company_id
+	toColumn: dim_company.company_id
+
+relationship bb199321-ae1d-0fec-ab97-e6f926051b49
+	fromColumn: 1_fact_revenue_and_fares.company_id
+	toColumn: dim_company.company_id
+
+relationship cfe90b96-ab5a-c919-64e3-d8cb93f7fb37
+	fromColumn: 3_and_7_fact_geography_and_zones_and_covid.company_id
+	toColumn: dim_company.company_id
+
+relationship c11f212a-4f44-b476-3a93-7ce0e11ce706
+	fromColumn: 2_fact_trip_demand_volume.hour_id
+	toColumn: dim_hour.hour_id
 

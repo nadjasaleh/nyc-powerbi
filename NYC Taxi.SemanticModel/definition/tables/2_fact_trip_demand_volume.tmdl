@@ -1,0 +1,107 @@
+table 2_fact_trip_demand_volume
+	lineageTag: e3246c38-146d-4627-8449-b8895f2f0fc8
+
+	measure 'Month Highlight Color' = ```
+			
+			VAR MonthlyMax = MAXX(ALLSELECTED('dim_date'[month_name]), [Total Trips])
+			RETURN
+			IF([Total Trips] = MonthlyMax, "#FFD700", "#A6A6A6") 
+			-- Highlighting the Max in Gold, others in Grey
+			```
+		lineageTag: eea71329-c296-4427-84d9-8ed48c0d81d0
+
+	column date_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 3293d5b0-c0af-4ec2-a83d-fece21fadf18
+		summarizeBy: none
+		sourceColumn: date_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column hour_id
+		dataType: int64
+		formatString: 0
+		lineageTag: c02c9a9d-bd85-453f-806e-be076d8c423d
+		summarizeBy: none
+		sourceColumn: hour_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column company_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 9ec28270-4e00-420d-84b3-3482ea6a3d6e
+		summarizeBy: none
+		sourceColumn: company_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_trips
+		dataType: int64
+		formatString: 0
+		lineageTag: 73524ccf-2aaf-4970-8089-d590a352d9fc
+		summarizeBy: sum
+		sourceColumn: total_trips
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_trip_distance
+		dataType: decimal
+		formatString: #,0.###############\ "kr";-#,0.###############\ "kr";#,0.###############\ "kr"
+		lineageTag: 71dd39a8-6eb2-48d5-9559-a3968c4f385b
+		summarizeBy: sum
+		sourceColumn: total_trip_distance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"sv-SE"}
+
+	column avg_trip_distance
+		dataType: decimal
+		formatString: #,0.###############\ "kr";-#,0.###############\ "kr";#,0.###############\ "kr"
+		lineageTag: 13ab5db3-72bc-493b-99d0-df49ade9da03
+		summarizeBy: sum
+		sourceColumn: avg_trip_distance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"sv-SE"}
+
+	column total_trip_time
+		dataType: double
+		lineageTag: 1d80a671-416b-428c-b605-1ebd4ed6d3f2
+		summarizeBy: sum
+		sourceColumn: total_trip_time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_trip_time
+		dataType: decimal
+		formatString: #,0.###############\ "kr";-#,0.###############\ "kr";#,0.###############\ "kr"
+		lineageTag: adb741d1-2214-4e7b-98af-63ec8b98c324
+		summarizeBy: sum
+		sourceColumn: avg_trip_time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"sv-SE"}
+
+	partition 2_fact_trip_demand_volume = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("adb-7405606287355996.16.azuredatabricks.net", "/sql/1.0/warehouses/ece3e88605ce132f", null),
+				    group3_gp_Database = Source{[Name="group3_gp",Kind="Database"]}[Data],
+				    gold_Schema = group3_gp_Database{[Name="gold",Kind="Schema"]}[Data],
+				    #"2_fact_trip_demand_volume_Table" = gold_Schema{[Name="2_fact_trip_demand_volume",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(#"2_fact_trip_demand_volume_Table",{{"avg_trip_time", Currency.Type}, {"avg_trip_distance", Currency.Type}, {"total_trip_distance", Currency.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

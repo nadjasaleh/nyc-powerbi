@@ -1,0 +1,145 @@
+table 4_fact_company_and_market_share
+	lineageTag: 85f24988-0ab5-462a-849f-caaac767cd42
+
+	measure 'Total Trips' = SUM('4_fact_company_and_market_share'[total_trips])
+		formatString: 0
+		lineageTag: 8ab57134-d0cf-47a9-bfd0-da2b6458027f
+
+	measure 'True Avg Distance' = DIVIDE(SUM('4_fact_company_and_market_share'[total_trip_distance]), [Total Trips])
+		formatString: #,0.###############\ "kr";-#,0.###############\ "kr";#,0.###############\ "kr"
+		lineageTag: c1e49c16-f7a7-430a-bb4b-872b71505bc5
+
+		annotation PBI_FormatHint = {"currencyCulture":"sv-SE"}
+
+	measure 'Total Revenue' = SUM('4_fact_company_and_market_share'[total_revenue])
+		lineageTag: 631cf7ca-3cea-43b9-9737-2c65dbce9c10
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column date_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 792ec240-4259-4adf-a5cc-051f149dbf0a
+		summarizeBy: none
+		sourceColumn: date_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column company_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 0a8d1071-9358-4812-a0b3-b4d1b583bff9
+		summarizeBy: none
+		sourceColumn: company_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_trips
+		dataType: int64
+		formatString: 0
+		lineageTag: ad032fdc-0481-401a-8774-ae6032d1af14
+		summarizeBy: sum
+		sourceColumn: total_trips
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_revenue
+		dataType: double
+		lineageTag: 154453ec-addc-497d-bfaa-d3b606c5ee7a
+		summarizeBy: sum
+		sourceColumn: total_revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_revenue
+		dataType: decimal
+		formatString: #,0.###############\ "kr";-#,0.###############\ "kr";#,0.###############\ "kr"
+		lineageTag: 265f8368-3742-41f1-ab49-6805bc5804c0
+		summarizeBy: sum
+		sourceColumn: avg_revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"sv-SE"}
+
+	column total_tip
+		dataType: double
+		lineageTag: f72e9ad2-90e4-452c-bc5f-20318dcedd81
+		summarizeBy: sum
+		sourceColumn: total_tip
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_tip
+		dataType: decimal
+		formatString: #,0.###############\ "kr";-#,0.###############\ "kr";#,0.###############\ "kr"
+		lineageTag: 39ae953e-c04a-46e2-9b02-5a0a8a9d297b
+		summarizeBy: sum
+		sourceColumn: avg_tip
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"sv-SE"}
+
+	column total_trip_distance
+		dataType: decimal
+		formatString: #,0.###############\ "kr";-#,0.###############\ "kr";#,0.###############\ "kr"
+		lineageTag: 55377c6c-1328-4a23-b8d6-b194a1cbef2b
+		summarizeBy: sum
+		sourceColumn: total_trip_distance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"sv-SE"}
+
+	column avg_trip_distance
+		dataType: decimal
+		formatString: #,0.###############\ "kr";-#,0.###############\ "kr";#,0.###############\ "kr"
+		lineageTag: 40a018d2-97bb-4c42-9728-cc783e853e05
+		summarizeBy: sum
+		sourceColumn: avg_trip_distance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"sv-SE"}
+
+	column total_trip_time
+		dataType: double
+		lineageTag: 657569c6-a854-470a-a4be-975f645e1d78
+		summarizeBy: sum
+		sourceColumn: total_trip_time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_trip_time
+		dataType: double
+		lineageTag: 0f7edd39-8035-462e-a010-e0781f372017
+		summarizeBy: sum
+		sourceColumn: avg_trip_time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 4_fact_company_and_market_share = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("adb-7405606287355996.16.azuredatabricks.net", "/sql/1.0/warehouses/ece3e88605ce132f", null),
+				    group3_gp_Database = Source{[Name="group3_gp",Kind="Database"]}[Data],
+				    gold_Schema = group3_gp_Database{[Name="gold",Kind="Schema"]}[Data],
+				    #"4_fact_company_and_market_share_Table" = gold_Schema{[Name="4_fact_company_and_market_share",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(#"4_fact_company_and_market_share_Table",{{"avg_revenue", Currency.Type}, {"avg_tip", Currency.Type}, {"total_trip_distance", Currency.Type}, {"avg_trip_distance", Currency.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

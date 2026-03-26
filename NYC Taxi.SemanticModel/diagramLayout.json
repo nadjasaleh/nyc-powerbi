@@ -4,14 +4,14 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 53.383050014693481,
-        "y": 0
+        "x": 0,
+        "y": 6.9444444444444446
       },
       "nodes": [
         {
           "location": {
-            "x": 618.38305001469359,
-            "y": 16.155302040154282
+            "x": 820.38305001469359,
+            "y": 888.23295306023147
           },
           "nodeIndex": "dim_company",
           "nodeLineageTag": "73f9f710-cbbd-49d8-9240-823f4264f2ba",
@@ -19,12 +19,12 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 1
         },
         {
           "location": {
-            "x": 852.38305001469348,
-            "y": 25
+            "x": 810.38305001469348,
+            "y": 555.07765102007716
           },
           "nodeIndex": "dim_date",
           "nodeLineageTag": "1c3ed550-334d-43ef-b28a-a1ebc4e9f45a",
@@ -32,12 +32,12 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 7
         },
         {
           "location": {
-            "x": 50,
-            "y": 46.140412819754275
+            "x": 810,
+            "y": 350.21806383983142
           },
           "nodeIndex": "dim_hour",
           "nodeLineageTag": "f87d1b56-0b69-48d4-8050-1d66fa54e9ac",
@@ -45,12 +45,12 @@
             "height": 152,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 2
         },
         {
           "location": {
-            "x": 1136.3830500146935,
-            "y": 75
+            "x": 816.38305001469348,
+            "y": 94
           },
           "nodeIndex": "dim_zone",
           "nodeLineageTag": "3c87345f-8dea-471d-acd5-009178c3309a",
@@ -58,24 +58,76 @@
             "height": 200,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 3
         },
         {
           "location": {
-            "x": 334.20156119318517,
-            "y": -24.999999999999972
+            "x": 1472.3830500146935,
+            "y": 0
           },
-          "nodeIndex": "fact_taxi_trips",
-          "nodeLineageTag": "d16e090a-5c5d-4ffa-9e06-e2d9f396087d",
+          "nodeIndex": "1_fact_revenue_and_fares",
+          "nodeLineageTag": "bf0a59a0-86dd-41bd-b15d-600629fce903",
           "size": {
             "height": 300,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1787.3671769988205,
+            "y": 9.5793650793650613
+          },
+          "nodeIndex": "2_fact_trip_demand_volume",
+          "nodeLineageTag": "e3246c38-146d-4627-8449-b8895f2f0fc8",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1503.0259071575506,
+            "y": 666.77777777777783
+          },
+          "nodeIndex": "4_fact_company_and_market_share",
+          "nodeLineageTag": "85f24988-0ab5-462a-849f-caaac767cd42",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 1736.1608277924711,
+            "y": 412.34920634920638
+          },
+          "nodeIndex": "5_fact_trip_efficiency_and_operations",
+          "nodeLineageTag": "a7294d5e-1505-4f61-920f-c914d41180f1",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 1261.3671769988205,
+            "y": 370.11647653011573
+          },
+          "nodeIndex": "3_and_7_fact_geography_and_zones_and_covid",
+          "nodeLineageTag": "6c9faa39-99b7-4a35-82ab-0cb852092310",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 8
         }
       ],
       "name": "All tables",
-      "zoomValue": 100,
+      "zoomValue": 72,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,

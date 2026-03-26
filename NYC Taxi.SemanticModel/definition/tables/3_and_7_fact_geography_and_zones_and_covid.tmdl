@@ -1,0 +1,130 @@
+table 3_and_7_fact_geography_and_zones_and_covid
+	lineageTag: 6c9faa39-99b7-4a35-82ab-0cb852092310
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 3ae915fc-07a7-485f-a783-20d11a055d86
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column company_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 560592c0-25ef-4a81-acd3-f31faa4b927a
+		summarizeBy: none
+		sourceColumn: company_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column pu_zone_id
+		dataType: int64
+		formatString: 0
+		lineageTag: b3512978-101b-47c3-89d6-ecf7c1394cdb
+		summarizeBy: none
+		sourceColumn: pu_zone_id
+
+		annotation SummarizationSetBy = User
+
+	column do_zone_id
+		dataType: int64
+		formatString: 0
+		lineageTag: b4f2490c-4285-4550-9090-5bee9236f013
+		summarizeBy: sum
+		sourceColumn: do_zone_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_covid
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1109859d-89a2-41ce-9015-af9623b4b624
+		summarizeBy: none
+		sourceColumn: is_covid
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_trips
+		dataType: int64
+		formatString: 0
+		lineageTag: e12e4269-3181-46f6-b348-8d3d6a796ba9
+		summarizeBy: sum
+		sourceColumn: total_trips
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_trip_distance
+		dataType: double
+		lineageTag: 719a2f28-f2ec-40cb-bc4b-8202af8db91d
+		summarizeBy: sum
+		sourceColumn: total_trip_distance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_trip_distance
+		dataType: double
+		lineageTag: 448c61e0-abec-4324-8137-a8cc2262b156
+		summarizeBy: sum
+		sourceColumn: avg_trip_distance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_trip_time
+		dataType: double
+		lineageTag: 5592849b-aa9f-4e54-adfe-229cc78b06ed
+		summarizeBy: sum
+		sourceColumn: total_trip_time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_trip_time
+		dataType: double
+		lineageTag: 42cf219b-3978-4c14-bf6a-e7513c629d66
+		summarizeBy: sum
+		sourceColumn: avg_trip_time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_amount
+		dataType: double
+		lineageTag: 91439d34-2dc5-480a-9cc6-da22c20bc14f
+		summarizeBy: sum
+		sourceColumn: total_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_amount
+		dataType: double
+		lineageTag: 2e933438-9e79-46e7-bee8-19a11a505a08
+		summarizeBy: sum
+		sourceColumn: avg_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 3_and_7_fact_geography_and_zones_and_covid = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("adb-7405606287355996.16.azuredatabricks.net", "/sql/1.0/warehouses/ece3e88605ce132f", null),
+				    group3_gp_Database = Source{[Name="group3_gp",Kind="Database"]}[Data],
+				    gold_Schema = group3_gp_Database{[Name="gold",Kind="Schema"]}[Data],
+				    #"3_and_7_fact_geography_and_zones_and_covid_Table" = gold_Schema{[Name="3_and_7_fact_geography_and_zones_and_covid",Kind="Table"]}[Data]
+				in
+				    #"3_and_7_fact_geography_and_zones_and_covid_Table"
+

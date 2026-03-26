@@ -10,15 +10,17 @@ annotation __PBI_TimeIntelligenceEnabled = 1
 
 annotation PBI_ProTooling = ["DevMode"]
 
-annotation PBI_QueryOrder = ["dim_company","dim_date","dim_hour","dim_zone","fact_taxi_trips"]
+annotation PBI_QueryOrder = ["dim_company","dim_date","dim_hour","dim_zone","5_fact_trip_efficiency_and_operations","4_fact_company_and_market_share","2_fact_trip_demand_volume","1_fact_revenue_and_fares","3_and_7_fact_geography_and_zones_and_covid"]
 
 ref table dim_company
 ref table dim_date
-ref table DateTableTemplate_93a1b0c4-c9e1-4915-b8ef-bbb4ce3c0991
-ref table LocalDateTable_abd3e9ce-5cf9-43dd-af1f-cc894ab80390
 ref table dim_hour
 ref table dim_zone
-ref table fact_taxi_trips
+ref table 5_fact_trip_efficiency_and_operations
+ref table 4_fact_company_and_market_share
+ref table 2_fact_trip_demand_volume
+ref table 1_fact_revenue_and_fares
+ref table 3_and_7_fact_geography_and_zones_and_covid
 
 ref cultureInfo en-US
 
